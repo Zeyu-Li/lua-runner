@@ -30,7 +30,6 @@ var TimeoutError = /** @class */ (function (_super) {
  * @param code the code to be run in Lua
  * @param timeout an optional parameter that states the timeout of the code
  */
-// export default
 function run_lua(code, timeout) {
     if (timeout === void 0) { timeout = 5; }
     try {
@@ -47,6 +46,14 @@ function run_lua(code, timeout) {
         throw new TimeoutError("Code exceeded " + timeout + " seconds");
     }, timeout * 1000);
 }
-run_lua("    \n    function hello_lua()\n      print(\"Hello World!\")\n      return \"A\"\n    end\n    \n    return hello_lua()\n    ").then(function (e) {
-    console.log(e);
-});
+exports["default"] = run_lua;
+// debug
+// run_lua(`    
+//     function hello_lua()
+//       print("Hello World!")
+//       return "A"
+//     end
+//     return hello_lua()
+//     `).then(e=> {
+//         console.log(e)
+//     })
