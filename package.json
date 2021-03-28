@@ -1,6 +1,6 @@
 {
   "name": "lua-runner",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Run Lua - the module",
   "main": "index.js",
   "scripts": {
