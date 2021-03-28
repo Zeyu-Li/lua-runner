@@ -64,7 +64,7 @@ function hello_lua()
     return "A"
 end
 return hello_lua()
-`
+`;
 
 run_lua(testLuaCode).then(function (res) {
     console.log(res);
@@ -93,7 +93,7 @@ function hello_lua()
     return "A"
 end
 return hello_lua()
-`
+`;
 
 run_lua_res(testLuaCode).then(function (res) {
     console.log(res);
