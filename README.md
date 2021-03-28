@@ -1,8 +1,8 @@
 # Lua Runner
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![npm version](https://badge.fury.io/js/lua-runner.svg)](https://badge.fury.io/js/lua-runner)
 
-A node module that runs Lua code! 
+A node module that runs Lua code with the power of webassembly! 
 
 
 
@@ -99,8 +99,6 @@ run_lua_res(testLuaCode).then(function (res) {
     console.log(res);
 });
 ```
-
-
 
 
 
