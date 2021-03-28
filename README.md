@@ -15,6 +15,28 @@ Run you Lua code right inside of JavaScript or TypeScript with this module
 
 
 
+## Installation
+
+To install do
+
+`npm i lua-runner --save`
+
+
+
+## Usage
+
+To use the module
+
+```js
+
+```
+
+## Author
+
+[Zeyu Li](https://github.com/Zeyu-Li)
+
+
+
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
