@@ -48,9 +48,9 @@ return hello_lua()
 `
 
 // run the code with the run_lua function and use then to catch the response
-console.log(run_lua(testLuaCode).then(res=> {
-    return res
-}))
+run_lua(testLuaCode).then(res=> {
+    console.log(res)
+})
 ```
 
 
