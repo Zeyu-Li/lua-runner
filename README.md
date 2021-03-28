@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
-A node module that runner Lua code! 
+A node module that runs Lua code! 
 
 
 
@@ -12,7 +12,9 @@ Run you Lua code right inside of JavaScript or TypeScript with this module
 
 - [x] Lua 5.4.0
 - [x] TypeScript support
+- [x] 0 dependencies
 - [ ] Browser support
+- [ ] Tests
 
 
 
@@ -21,6 +23,10 @@ Run you Lua code right inside of JavaScript or TypeScript with this module
 To install do
 
 `npm i lua-runner --save`
+
+Build (to include wasm)
+
+``
 
 
 
