@@ -1,4 +1,4 @@
-import run_lua from "lua-runner"
+import {run_lua} from "lua-runner"
 
 let testLuaCode = `    
 function hello_lua()

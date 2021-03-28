@@ -1,13 +1,7 @@
-let run_lua = require("lua-runner");
-
-let testLuaCode = `    
-function hello_lua()
-    print("Hello World!")
-    return "A"
-end
-return hello_lua()
-`
-
-run_lua["default"](testLuaCode).then(function (res) {
-    console.log(res);
-});
+"use strict";
+// import {run_lua} from "lua-runner"
+// exports.__esModule = true;
+var {run_lua_res} = require("lua-runner");
+var testLuaCode = "    \nfunction hello_lua()\n    print(\"Hello World!\")\n    return \"A\"\nend\nreturn hello_lua()\n";
+// let textInput = document.getElementById("text")
+run_lua_res(testLuaCode).then(function (res) { console.log(res); });

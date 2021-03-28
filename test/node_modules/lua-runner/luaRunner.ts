@@ -1,5 +1,12 @@
 import { initWasmModule } from './webassem'
 
+/**
+ * Runs the actual code in webassembly
+ * @param code 
+ * code to be run
+ * @returns 
+ * the result of running the code as a promise string
+ */
 export const runner = (code: string): Promise<string> => {
     let output: string
 
@@ -17,6 +24,7 @@ export const runner = (code: string): Promise<string> => {
         })(),
     }
     
+    // returns the promise
     return initWasmModule(config).then(Module => {
         Module.ccall("run_lua", 'number', ['string'], [code])
     }).then(()=> {
