@@ -1,6 +1,6 @@
 import { initWasmModule } from './webassem'
 
-export function runner(code: string): string {
+export const runner = (code: string): Promise<string> => {
     let output: string
 
     // configuration for wasm
@@ -8,7 +8,7 @@ export function runner(code: string): string {
         print: (function () {
             return function (text) {
                 if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
-                console.log(text);
+                // console.log(text);
 
                 if (text != "emsc") {
                     output += `${text}\n`
@@ -17,8 +17,11 @@ export function runner(code: string): string {
         })(),
     }
     
-    initWasmModule(config).then(Module => {
+    return initWasmModule(config).then(Module => {
         Module.ccall("run_lua", 'number', ['string'], [code])
+    }).then(()=> {
+        return output
+    }).catch(()=> {
+        return "Error"
     })
-    return output
 }

@@ -12,13 +12,14 @@ class TimeoutError extends Error {
  * @param code the code to be run in Lua
  * @param timeout an optional parameter that states the timeout of the code
  */
-function run_lua(code: string, timeout = 5): string {
+export default function run_lua(code: string, timeout = 5): Promise<string> {
     try {
-        let val: string = runner(code)
-        return val
+        let val: Promise<string> = runner(code)
+        // remove undefined from the output
+        return val.then(e=>{return e.slice(9)})
     } catch (e) {
         // debug
-        console.log(e)
+        console.log(`Error: ${e}`)
     }
 
     // after timeout seconds, throw timeout error
@@ -27,16 +28,15 @@ function run_lua(code: string, timeout = 5): string {
     }, timeout * 1000)
 }
 
-console.log(run_lua(`--[[
-    This is a Lua online editor!
-    Currently running Lua version 5.4.0
-    Source code here: https://github.com/Zeyu-Li/Lua-Online
-    ]]
+// debug
+// run_lua(`    
+//     function hello_lua()
+//       print("Hello World!")
+//       return "A"
+//     end
     
-    function hello_lua()
-      print("Hello World!")
-      return "Hit Ctrl-B to rebuild"
-    end
-    
-    return hello_lua()
-    `))
+//     return hello_lua()
+//     `).then(e=> {
+//         console.log(e)
+//     })
+

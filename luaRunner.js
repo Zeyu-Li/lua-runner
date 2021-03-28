@@ -2,7 +2,7 @@
 exports.__esModule = true;
 exports.runner = void 0;
 var webassem_1 = require("./webassem");
-function runner(code) {
+var runner = function (code) {
     var output;
     // configuration for wasm
     var config = {
@@ -10,16 +10,19 @@ function runner(code) {
             return function (text) {
                 if (arguments.length > 1)
                     text = Array.prototype.slice.call(arguments).join(' ');
-                console.log(text);
+                // console.log(text);
                 if (text != "emsc") {
                     output += text + "\n";
                 }
             };
         })()
     };
-    webassem_1.initWasmModule(config).then(function (Module) {
+    return webassem_1.initWasmModule(config).then(function (Module) {
         Module.ccall("run_lua", 'number', ['string'], [code]);
+    }).then(function () {
+        return output;
+    })["catch"](function () {
+        return "Error";
     });
-    return output;
-}
+};
 exports.runner = runner;

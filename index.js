@@ -30,19 +30,23 @@ var TimeoutError = /** @class */ (function (_super) {
  * @param code the code to be run in Lua
  * @param timeout an optional parameter that states the timeout of the code
  */
+// export default
 function run_lua(code, timeout) {
     if (timeout === void 0) { timeout = 5; }
     try {
         var val = luaRunner_1.runner(code);
-        return val;
+        // remove undefined from the output
+        return val.then(function (e) { return e.slice(9); });
     }
     catch (e) {
         // debug
-        console.log(e);
+        console.log("Error: " + e);
     }
     // after timeout seconds, throw timeout error
     setTimeout(function () {
         throw new TimeoutError("Code exceeded " + timeout + " seconds");
     }, timeout * 1000);
 }
-console.log(run_lua("--[[\n    This is a Lua online editor!\n    Currently running Lua version 5.4.0\n    Source code here: https://github.com/Zeyu-Li/Lua-Online\n    ]]\n    \n    function hello_lua()\n      print(\"Hello World!\")\n      return \"Hit Ctrl-B to rebuild\"\n    end\n    \n    return hello_lua()\n    "));
+run_lua("    \n    function hello_lua()\n      print(\"Hello World!\")\n      return \"A\"\n    end\n    \n    return hello_lua()\n    ").then(function (e) {
+    console.log(e);
+});
