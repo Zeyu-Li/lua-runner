@@ -36,7 +36,7 @@ To use the module
 
 ```js
 // import the package
-import run_lua from "lua-runner";
+import run_lua from "lua-runner"
 
 // define the lua code
 let testLuaCode = `    
@@ -51,6 +51,24 @@ return hello_lua()
 run_lua(testLuaCode).then(res=> {
     console.log(res)
 })
+```
+
+or without ES6 syntax as
+
+```js
+let run_lua = require("lua-runner");
+
+let testLuaCode = `    
+function hello_lua()
+    print("Hello World!")
+    return "A"
+end
+return hello_lua()
+`
+
+run_lua["default"](testLuaCode).then(function (res) {
+    console.log(res);
+});
 ```
 
 
