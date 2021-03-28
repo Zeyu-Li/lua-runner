@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lua-runner": "^1.0.0"
+    "lua-runner": "^1.1.1"
   }
 }
