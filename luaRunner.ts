@@ -1,12 +1,24 @@
 import { initWasmModule } from './webassem'
 
-/**
- * Run the lua code
- * @param code the code to be run in Lua
- * @param timeout an optional parameter that states the timeout of the code
- */
-export function run_lua(code: string, timeout = 5): void {
-    let config
-    initWasmModule(config)
-    return
+export function runner(code: string): string {
+    let output: string
+
+    // configuration for wasm
+    let config = {
+        print: (function () {
+            return function (text) {
+                if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+                console.log(text);
+
+                if (text != "emsc") {
+                    output += `${text}\n`
+                }
+            };
+        })(),
+    }
+    
+    initWasmModule(config).then(Module => {
+        Module.ccall("run_lua", 'number', ['string'], [code])
+    })
+    return output
 }
