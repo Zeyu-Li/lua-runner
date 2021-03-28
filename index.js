@@ -77,6 +77,6 @@ function run_lua_res(code, timeout) {
 }
 exports.run_lua_res = run_lua_res;
 // debug
-run_lua_res("    \n    function hello_lua()\n      print(\"Hello World!\")\n      return \"A\"\n    end\n    \n    return hello_lua()\n    ").then(function (e) {
-    console.log(e);
-});
+// run_lua_res("    \n    function hello_lua()\n      print(\"Hello World!\")\n      return \"A\"\n    end\n    \n    return hello_lua()\n    ").then(function (e) {
+//     console.log(e);
+// });
