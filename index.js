@@ -15,9 +15,18 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
+exports.run_lua_res = exports.run_lua = void 0;
 var luaRunner_1 = require("./luaRunner");
+/**
+ * A custom timeout error
+ */
 var TimeoutError = /** @class */ (function (_super) {
     __extends(TimeoutError, _super);
+    /**
+     * The constructor
+     * @param message
+     * error message
+     */
     function TimeoutError(message) {
         var _this = _super.call(this, message) || this;
         _this.name = "TimeoutError";
@@ -25,17 +34,27 @@ var TimeoutError = /** @class */ (function (_super) {
     }
     return TimeoutError;
 }(Error));
-/**
- * Run the lua code
- * @param code the code to be run in Lua
- * @param timeout an optional parameter that states the timeout of the code
- */
 function run_lua(code, timeout) {
     if (timeout === void 0) { timeout = 5; }
+    var codeString = '';
+    if (typeof code == "object") {
+        // if array of objects try to concate the elements into one string
+        try {
+            code.forEach(function (element) {
+                codeString += element + '\n';
+            });
+        }
+        catch (e) {
+            throw new TypeError("The type provided can only be string or string array");
+        }
+    }
+    else if (typeof code == "string") {
+        codeString = code;
+    }
     try {
-        var val = luaRunner_1.runner(code);
-        // remove undefined from the output
-        return val.then(function (e) { return e.slice(9); });
+        var val = luaRunner_1.runner(codeString);
+        // remove undefined from the output and the last char of new line
+        return val.then(function (e) { return e.slice(9).slice(0, -1); });
     }
     catch (e) {
         // debug
@@ -46,14 +65,18 @@ function run_lua(code, timeout) {
         throw new TimeoutError("Code exceeded " + timeout + " seconds");
     }, timeout * 1000);
 }
-exports["default"] = run_lua;
+exports.run_lua = run_lua;
+function run_lua_res(code, timeout) {
+    if (timeout === void 0) { timeout = 5; }
+    return run_lua(code, timeout).then(function (res) {
+        return {
+            "return": res.lastIndexOf('\n') == -1 ? null : res.slice(0, res.lastIndexOf('\n')),
+            exit_code: res.split(/\r?\n/).pop().slice(18)
+        };
+    });
+}
+exports.run_lua_res = run_lua_res;
 // debug
-// run_lua(`    
-//     function hello_lua()
-//       print("Hello World!")
-//       return "A"
-//     end
-//     return hello_lua()
-//     `).then(e=> {
-//         console.log(e)
-//     })
+run_lua_res("    \n    function hello_lua()\n      print(\"Hello World!\")\n      return \"A\"\n    end\n    \n    return hello_lua()\n    ").then(function (e) {
+    console.log(e);
+});
