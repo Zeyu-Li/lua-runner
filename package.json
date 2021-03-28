@@ -1,5 +1,5 @@
 {
-  "name": "@Zeyu-Li/lua-runner",
+  "name": "lua-runner",
   "version": "1.0.0",
   "description": "Run Lua - the module",
   "main": "index.js",
