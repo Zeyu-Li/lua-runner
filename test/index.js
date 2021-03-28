@@ -1,4 +1,4 @@
-import {run_lua} from "lua-runner";
+import run_lua from "lua-runner";
 
 let textInput = document.getElementById("text")
 textInput.innerText(run_lua(`    
