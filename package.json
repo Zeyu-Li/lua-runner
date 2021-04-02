@@ -1,6 +1,6 @@
 {
   "name": "lua-runner",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Run Lua - the module",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,8 @@
   },
   "keywords": [
     "lua",
-    "webassembly"
+    "webassembly",
+    "typescript"
   ],
   "author": "Zeyu Li",
   "license": "MIT",

@@ -1,6 +1,6 @@
 # Lua Runner
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![npm version](https://badge.fury.io/js/lua-runner.svg)](https://badge.fury.io/js/lua-runner)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![npm version](https://badge.fury.io/js/lua-runner.svg)](https://badge.fury.io/js/lua-runner) ![download count badge](https://img.shields.io/npm/dt/lua-runner.svg) 
 
 A node module that runs Lua code with the power of webassembly! 
 
@@ -24,9 +24,7 @@ To install do
 
 `npm i lua-runner --save`
 
-Build (to include wasm)
-
-``
+<!-- Build (to include wasm) `` -->
 
 
 
