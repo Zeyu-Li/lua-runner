@@ -8,7 +8,7 @@ A node module that runs Lua code with the power of webassembly!
 
 ## About
 
-Run your Lua code right inside of JavaScript or TypeScript with this module
+Run your Lua code right inside of JavaScript or TypeScript with this module. Made from [wasm_lua](https://github.com/Dreagonmon/wasm_lua)
 
 - [x] Lua 5.4.0
 - [x] TypeScript support
