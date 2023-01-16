@@ -104,8 +104,8 @@ run_lua_res(testLuaCode).then(function (res) {
 
 * [Zeyu Li](https://github.com/Zeyu-Li)
 
-
-
 ## License
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://www.lua.org/license.html) 
+
+License under MIT, check out Lua at [lua.org](https://www.lua.org/) 
